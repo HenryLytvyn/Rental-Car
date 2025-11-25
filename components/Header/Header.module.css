@@ -1,0 +1,47 @@
+.header {
+  background-color: var(--color-bg-secondary);
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.logoLink {
+  padding: 10px;
+  margin-left: -10px;
+}
+
+.logoImg {
+  width: 104px;
+  height: 16px;
+}
+
+.nav {
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-right: -10px;
+}
+
+.navItem {
+}
+
+.navItemLink {
+  /* font-family: "Manrope", sans-serif; */
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  padding: 10px;
+}
+
+.navItemLinkActive {
+}
