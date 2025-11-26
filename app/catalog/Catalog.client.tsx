@@ -5,6 +5,7 @@ import DoubleInput from '@/components/DoubleInput/DoubleInput';
 import SelectPrimary from '@/components/SelectPrimary/SelectPrimary';
 import css from './Catalog.module.css';
 import { useState } from 'react';
+import { getCars } from '@/lib/api/api';
 
 interface Query {
   brand?: string;
@@ -15,8 +16,13 @@ interface Query {
   page?: string;
 }
 
+interface Values {
+  from: string;
+  to: string;
+}
+
 export default function CatalogClient() {
-  const [query, setQuery] = useState<Query>({ page: '1' });
+  const [query, setQuery] = useState<Query>({ limit: '12', page: '1' });
 
   function updateQuery(key: keyof Query, value: string) {
     setQuery({
@@ -25,7 +31,17 @@ export default function CatalogClient() {
     });
   }
 
-  console.log(query);
+  function handleDoubleInput(value: Values) {
+    setQuery(prev => ({
+      ...prev,
+      ...(value.from && { minMileage: value.from.split(' ').join('') }),
+      ...(value.to && { maxMileage: value.to.split(' ').join('') }),
+    }));
+  }
+
+  function handleSearch() {
+    console.log(getCars(query));
+  }
 
   return (
     <div className={css.catalogContainer}>
@@ -79,13 +95,12 @@ export default function CatalogClient() {
           <p className={css.selectTitle}>Car mileage / km</p>
           <DoubleInput
             handleChange={value => {
-              updateQuery('minMileage', value.fromRender);
-              updateQuery('maxMileage', value.toRender);
+              handleDoubleInput(value);
             }}
           />
         </li>
       </ul>
-      <ButtonPrimary width={156} text="Search" />
+      <ButtonPrimary handleClick={handleSearch} width={156} text="Search" />
     </div>
   );
 }

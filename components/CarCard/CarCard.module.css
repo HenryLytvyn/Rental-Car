@@ -1,0 +1,63 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 276px;
+  height: 424px;
+}
+
+.image {
+  width: 276px;
+  height: 268px;
+  margin-bottom: 16px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(18, 20, 23, 0.5) 0%,
+    rgba(18, 20, 23, 0.5) 100%
+  );
+}
+
+.basicInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.carInfo {
+}
+
+.text {
+}
+
+.addressContainer {
+  margin-bottom: 4px;
+}
+
+.secondaryText {
+  display: inline-block;
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--color-text-secondary);
+  /* margin-right: 6px; */
+}
+
+.divider {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: var(--color-border);
+  margin-bottom: -3px;
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+.model {
+  color: var(--color-accent);
+}

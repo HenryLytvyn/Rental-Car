@@ -23,7 +23,6 @@ export default function SelectPrimary({
 }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>(placeholder);
-  const selectRef = useRef(null);
 
   function toggle() {
     setIsOpen(!isOpen);
@@ -32,7 +31,7 @@ export default function SelectPrimary({
   function handleSelect(option: string) {
     setSelected(option);
     setIsOpen(false);
-    handleChange && handleChange(option);
+    handleChange(option);
   }
 
   return (
@@ -58,7 +57,6 @@ export default function SelectPrimary({
               <li
                 className={`${css.customSelectItem} ${option === selected ? css.selected : ''}`}
                 key={option}
-                data-value={option}
                 onClick={() => {
                   handleSelect(option);
                 }}

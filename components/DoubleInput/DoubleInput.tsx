@@ -4,10 +4,8 @@ import { useState } from 'react';
 import css from './DoubleInput.module.css';
 
 interface Values {
-  from: number;
-  to: number;
-  fromRender: string;
-  toRender: string;
+  from: string;
+  to: string;
 }
 
 interface Props {
@@ -16,35 +14,35 @@ interface Props {
 
 export default function DoubleInput({ handleChange }: Props) {
   const [values, setValues] = useState<Values>({
-    from: 0,
-    to: 0,
-    fromRender: '',
-    toRender: '',
+    from: '',
+    to: '',
   });
 
   function handleChangeFrom(event: React.ChangeEvent<HTMLInputElement>) {
     const digits = event.target.value.replace(/\D/g, '');
     const formatted = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-    setValues({
+    const newValues = {
       ...values,
-      from: Number(digits),
-      fromRender: formatted,
-    });
+      from: formatted,
+    };
+
+    setValues(newValues);
+    handleChange(newValues);
   }
 
   function handleChangeTo(event: React.ChangeEvent<HTMLInputElement>) {
     const digits = event.target.value.replace(/\D/g, '');
     const formatted = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-    setValues({
+    const newValues = {
       ...values,
-      to: Number(digits),
-      toRender: formatted,
-    });
-  }
+      to: formatted,
+    };
 
-  handleChange(values);
+    setValues(newValues);
+    handleChange(newValues);
+  }
 
   return (
     <div className={css.inputsBlock}>
@@ -55,7 +53,7 @@ export default function DoubleInput({ handleChange }: Props) {
           className={css.input}
           type="text"
           inputMode="numeric"
-          value={values.fromRender}
+          value={values.from}
         />
       </div>
 
@@ -68,7 +66,7 @@ export default function DoubleInput({ handleChange }: Props) {
           className={css.input}
           type="text"
           inputMode="numeric"
-          value={values.toRender}
+          value={values.to}
         />
       </div>
     </div>
