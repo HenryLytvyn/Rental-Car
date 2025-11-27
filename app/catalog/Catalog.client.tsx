@@ -17,6 +17,14 @@ import { useLockScroll } from '@/lib/hooks/useLockScroll';
 export default function CatalogClient() {
   const [query, setQuery] = useState<QueryCarsType>({ limit: '12', page: '1' });
 
+  const { data, error, isFetching, refetch } = useQuery({
+    queryKey: ['cars'],
+    queryFn: () => getCars(query),
+    placeholderData: keepPreviousData,
+  });
+
+  useLockScroll(isFetching);
+
   function updateQuery(key: keyof QueryCarsType, value: string) {
     setQuery({
       ...query,
@@ -27,20 +35,29 @@ export default function CatalogClient() {
   function handleDoubleInput(value: DoubleInputValuesType) {
     setQuery(prev => ({
       ...prev,
-      ...(value.from && { minMileage: value.from.split(' ').join('') }),
-      ...(value.to && { maxMileage: value.to.split(' ').join('') }),
+      minMileage: value.from ? value.from.replace(/ /g, '') : '',
+      maxMileage: value.to ? value.to.replace(/ /g, '') : '',
     }));
   }
 
-  const { data, error, isFetching, refetch } = useQuery({
-    queryKey: ['cars'],
-    queryFn: () => getCars(query),
-    placeholderData: keepPreviousData,
-  });
-
-  useLockScroll(isFetching);
-
   async function handleSearch() {
+    const minMileageNumber = Number(query.minMileage);
+    const maxMileageNumber = Number(query.maxMileage);
+
+    if (maxMileageNumber < minMileageNumber) {
+      setQuery({
+        ...query,
+        maxMileage: String(minMileageNumber + 500),
+      });
+    }
+
+    // if (maxMileageNumber < minMileageNumber) {
+    //   setQuery(prev => ({
+    //     ...prev,
+    //     maxMileage: String(minMileageNumber + 500),
+    //   }));
+    // }
+
     console.log(query);
     await refetch();
   }

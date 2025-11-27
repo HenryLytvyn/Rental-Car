@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './DoubleInput.module.css';
 import type { DoubleInputValuesType } from '@/types/DoubleInput/DoubleInput';
 
@@ -14,30 +14,23 @@ export default function DoubleInput({ handleChange }: Props) {
     to: '',
   });
 
+  useEffect(() => {
+    handleChange(values);
+  }, [values]);
+
+  function format(value: string) {
+    const digits = value.replace(/\D/g, '');
+    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
   function handleChangeFrom(event: React.ChangeEvent<HTMLInputElement>) {
-    const digits = event.target.value.replace(/\D/g, '');
-    const formatted = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-
-    const newValues = {
-      ...values,
-      from: formatted,
-    };
-
-    setValues(newValues);
-    handleChange(newValues);
+    const formatted = format(event.target.value);
+    setValues(prev => ({ ...prev, from: formatted }));
   }
 
   function handleChangeTo(event: React.ChangeEvent<HTMLInputElement>) {
-    const digits = event.target.value.replace(/\D/g, '');
-    const formatted = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-
-    const newValues = {
-      ...values,
-      to: formatted,
-    };
-
-    setValues(newValues);
-    handleChange(newValues);
+    const formatted = format(event.target.value);
+    setValues(prev => ({ ...prev, to: formatted }));
   }
 
   return (
