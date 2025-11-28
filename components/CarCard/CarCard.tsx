@@ -2,23 +2,24 @@ import Image from 'next/image';
 import css from './CarCard.module.css';
 import LinkPrimary from '../LinkPrimary/LinkPrimary';
 import type { CarCardType } from '@/types/CarCard/CarCard';
+import getAddress from '@/utils/getAddress';
 
 interface Props {
   car: CarCardType;
 }
 
 export default function CarCard({ car }: Props) {
-  function getAddress(
-    countryOrCity: 'country' | 'city',
-    addressString: string
-  ) {
-    const arrAddress = addressString
-      .split(' ')
-      .map(el => (el.endsWith(',') ? el.slice(0, -1) : el));
+  // function getAddress(
+  //   countryOrCity: 'country' | 'city',
+  //   addressString: string
+  // ) {
+  //   const arrAddress = addressString
+  //     .split(' ')
+  //     .map(el => (el.endsWith(',') ? el.slice(0, -1) : el));
 
-    if (countryOrCity === 'city') return arrAddress[arrAddress.length - 2];
-    if (countryOrCity === 'country') return arrAddress[arrAddress.length - 1];
-  }
+  //   if (countryOrCity === 'city') return arrAddress[arrAddress.length - 2];
+  //   if (countryOrCity === 'country') return arrAddress[arrAddress.length - 1];
+  // }
 
   return (
     <div className={css.card}>
@@ -51,7 +52,7 @@ export default function CarCard({ car }: Props) {
         <div className={css.divider}></div>
         <p className={css.secondaryText}>{car.mileage} km</p>
       </div>
-      <LinkPrimary width={276} text="Read more" page="/" />
+      <LinkPrimary width={276} text="Read more" page={`/catalog/${car.id}`} />
     </div>
   );
 }

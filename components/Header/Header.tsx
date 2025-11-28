@@ -17,7 +17,7 @@ export default function Header() {
               </Link>
             </li>
             <li className={css.navItem}>
-              <Link className={css.navItemLink} href="#">
+              <Link className={css.navItemLink} href="/catalog">
                 Catalog
               </Link>
             </li>

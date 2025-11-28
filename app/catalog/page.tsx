@@ -1,3 +1,4 @@
+import { getCarBrends } from '@/lib/api/api';
 import CatalogClient from './Catalog.client';
 
 interface Query {
@@ -10,9 +11,10 @@ interface Query {
 }
 
 export default async function Catalog() {
+  const brands = await getCarBrends();
   return (
     <div className="container">
-      <CatalogClient />
+      <CatalogClient brands={brands} />
     </div>
   );
 }

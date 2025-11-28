@@ -1,36 +1,30 @@
-'use client';
+// DoubleInput.tsx
 
-import { useEffect, useState } from 'react';
+// 'use client';
+
+import formatThousands from '@/utils/formatThousands';
 import css from './DoubleInput.module.css';
 import type { DoubleInputValuesType } from '@/types/DoubleInput/DoubleInput';
 
 interface Props {
   handleChange: (value: DoubleInputValuesType) => void;
+  valuesTo?: string;
+  valuesFrom?: string;
 }
 
-export default function DoubleInput({ handleChange }: Props) {
-  const [values, setValues] = useState<DoubleInputValuesType>({
-    from: '',
-    to: '',
-  });
-
-  useEffect(() => {
-    handleChange(values);
-  }, [values]);
-
-  function format(value: string) {
-    const digits = value.replace(/\D/g, '');
-    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  }
-
+export default function DoubleInput({
+  handleChange,
+  valuesTo = '',
+  valuesFrom = '',
+}: Props) {
   function handleChangeFrom(event: React.ChangeEvent<HTMLInputElement>) {
-    const formatted = format(event.target.value);
-    setValues(prev => ({ ...prev, from: formatted }));
+    const formatted = event.target.value.replace(/\D/g, '');
+    handleChange({ from: formatted, to: valuesTo });
   }
 
   function handleChangeTo(event: React.ChangeEvent<HTMLInputElement>) {
-    const formatted = format(event.target.value);
-    setValues(prev => ({ ...prev, to: formatted }));
+    const formatted = event.target.value.replace(/\D/g, '');
+    handleChange({ to: formatted, from: valuesFrom });
   }
 
   return (
@@ -42,7 +36,7 @@ export default function DoubleInput({ handleChange }: Props) {
           className={css.input}
           type="text"
           inputMode="numeric"
-          value={values.from}
+          value={formatThousands(valuesFrom)}
         />
       </div>
 
@@ -55,7 +49,7 @@ export default function DoubleInput({ handleChange }: Props) {
           className={css.input}
           type="text"
           inputMode="numeric"
-          value={values.to}
+          value={formatThousands(valuesTo)}
         />
       </div>
     </div>

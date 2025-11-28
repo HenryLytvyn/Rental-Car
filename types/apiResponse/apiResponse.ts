@@ -1,8 +1,27 @@
 import type { CarCardType } from '../CarCard/CarCard';
 
-export interface ResponseCarsType {
+export interface CarsResponse {
   cars: CarCardType[];
   totalCars: number;
   page: string;
   totalPages: number;
+}
+
+export interface CarByIdResponse {
+  id: string;
+  year: number;
+  brand: string;
+  model: string;
+  type: string;
+  img: string;
+  description: string;
+  fuelConsumption: string;
+  engineSize: string;
+  accessories: string[];
+  functionalities: string[];
+  rentalPrice: string;
+  rentalCompany: string;
+  address: string;
+  rentalConditions: string[];
+  mileage: number;
 }

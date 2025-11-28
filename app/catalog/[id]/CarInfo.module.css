@@ -1,0 +1,111 @@
+.carInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 84px;
+  padding-bottom: 104px;
+}
+
+.leftSidebar {
+  width: 640px;
+}
+
+.carPicture {
+  border-radius: 19px;
+}
+
+.rightSidebar {
+  width: 488px;
+  padding-top: 20px;
+}
+
+.commonInfoBlock {
+  margin-bottom: 68px;
+}
+
+.mainTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  padding-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+.additionInfoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin-bottom: 16px;
+}
+
+.locationIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.address {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+
+  margin-right: 16px;
+}
+
+.mileage {
+}
+
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--color-accent);
+
+  margin-bottom: 32px;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.rentFeaturesList {
+}
+
+.rentFeaturesItem:not(:last-child) {
+  margin-bottom: 110px;
+}
+
+.rentFeaturesTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+
+  margin-bottom: 20px;
+  color: var(--color-text-primary);
+}
+
+.detailedFeaturesList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.detailedFeaturesItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.detailedFeaturesIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.detailedFeaturesText {
+}

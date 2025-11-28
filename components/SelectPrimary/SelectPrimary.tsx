@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import css from './SelectPrimary.module.css';
 import { Icon } from '../Icon/Icon';
+import { useClickOutside } from '@/lib/hooks/useClickOutside';
 
 interface Props {
   width: number;
@@ -21,8 +22,14 @@ export default function SelectPrimary({
   handleChange,
   symbolBeforeValue,
 }: Props) {
+  const selectRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>(placeholder);
+
+  useClickOutside({
+    ref: selectRef,
+    callback: () => setIsOpen(false),
+  });
 
   function toggle() {
     setIsOpen(!isOpen);
@@ -39,6 +46,7 @@ export default function SelectPrimary({
       <div
         className={`${css.customSelect} ${isOpen ? css.open : ''}`}
         style={{ width: width }}
+        ref={selectRef}
       >
         <div className={css.customSelectTrigger} onClick={toggle}>
           <p>

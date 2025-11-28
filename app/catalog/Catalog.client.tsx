@@ -14,7 +14,11 @@ import BackgroundOverlay from '@/components/BackgroundOverlay/BackgroundOverlay'
 import Loader from '@/components/Loader/Loader';
 import { useLockScroll } from '@/lib/hooks/useLockScroll';
 
-export default function CatalogClient() {
+interface Props {
+  brands: string[];
+}
+
+export default function CatalogClient({ brands }: Props) {
   const [query, setQuery] = useState<QueryCarsType>({ limit: '12', page: '1' });
 
   const { data, error, isFetching, refetch } = useQuery({
@@ -35,32 +39,31 @@ export default function CatalogClient() {
   function handleDoubleInput(value: DoubleInputValuesType) {
     setQuery(prev => ({
       ...prev,
-      minMileage: value.from ? value.from.replace(/ /g, '') : '',
-      maxMileage: value.to ? value.to.replace(/ /g, '') : '',
+      minMileage: value.from,
+      maxMileage: value.to,
     }));
   }
 
   async function handleSearch() {
-    const minMileageNumber = Number(query.minMileage);
-    const maxMileageNumber = Number(query.maxMileage);
+    if (query.minMileage !== '' || query.maxMileage !== '') {
+      const minMileageNumber = Number(query.minMileage);
+      const maxMileageNumber = Number(query.maxMileage);
 
-    if (maxMileageNumber < minMileageNumber) {
-      setQuery({
-        ...query,
-        maxMileage: String(minMileageNumber + 500),
-      });
+      if (maxMileageNumber < minMileageNumber) {
+        setQuery({
+          ...query,
+          maxMileage: String(minMileageNumber + 500),
+        });
+
+        await new Promise(r => setTimeout(r));
+        // waiting one tick of the event loop so React can process the state update and trigger a re-render
+      }
     }
 
-    // if (maxMileageNumber < minMileageNumber) {
-    //   setQuery(prev => ({
-    //     ...prev,
-    //     maxMileage: String(minMileageNumber + 500),
-    //   }));
-    // }
-
-    console.log(query);
     await refetch();
   }
+
+  console.log('query.minMileage: ', query.minMileage);
 
   return (
     <>
@@ -71,29 +74,7 @@ export default function CatalogClient() {
             <SelectPrimary
               width={204}
               height={272}
-              options={[
-                'Aston Martin',
-                'Audi',
-                'BMW',
-                'Bentley',
-                'Buick',
-                'Chevrolet',
-                'Chrysler',
-                'GMC',
-                'HUMMER',
-                'Hyundai',
-                'Kia',
-                'Lamborghini',
-                'Land Rover',
-                'Lincoln',
-                'MINI',
-                'Mercedes-Benz',
-                'Mitsubishi',
-                'Nissan',
-                'Pontiac',
-                'Subaru',
-                'Volvo',
-              ]}
+              options={brands}
               placeholder="Choose a brand"
               handleChange={value => updateQuery('brand', value)}
             />
@@ -117,6 +98,8 @@ export default function CatalogClient() {
               handleChange={value => {
                 handleDoubleInput(value);
               }}
+              valuesTo={query.maxMileage}
+              valuesFrom={query.minMileage}
             />
           </li>
         </ul>
