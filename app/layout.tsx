@@ -5,11 +5,6 @@ import './globals.css';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import Header from '@/components/Header/Header';
 
-// export const metadata: Metadata = {
-//   title: ,
-//   description: ,
-// };
-
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -44,39 +39,42 @@ export default function RootLayout({ children, modal }: Props) {
 }
 
 export const metadata: Metadata = {
-  title: 'Car Rental Catalog – Find Your Perfect Ride',
+  title: 'Find Your Perfect Rental Car – Reliable & Affordable Rentals',
   description:
-    'Explore a wide range of cars for rent. Filter by brand, price, and mileage, view available vehicles, and load more options with ease.',
+    'Discover reliable and budget-friendly rental cars for any journey. Browse our catalog and book your ideal car quickly and easily.',
+  icons: '/favicon.ico',
   keywords:
-    'car rental, rent a car, car hire, affordable cars, vehicle rental, car catalog',
+    'car rental, rent a car, affordable cars, reliable car rental, vehicle hire, car catalog',
   authors: [
     {
-      name: 'Hennadii Lytvyn',
+      name: 'Henry Lytvyn',
       url: 'https://www.linkedin.com/in/henry-lytvyn/',
     },
   ],
   robots: 'index, follow',
   openGraph: {
-    title: 'Car Rental Catalog – Find Your Perfect Ride',
+    title: 'Find Your Perfect Rental Car – Reliable & Affordable Rentals',
     description:
-      'Browse and filter cars for rent by brand, price, and mileage. Discover your ideal vehicle today.',
-    url: 'https://yourwebsite.com/catalog',
-    siteName: 'YourCompanyName',
+      'Explore our wide range of rental cars. Filter by brand, price, and mileage, and book your ideal vehicle today.',
+    url: 'https://go-it-car-rental-5ia63ez2b-henrys-projects-5eef7959.vercel.app',
+    siteName: 'RentalCar',
     type: 'website',
     images: [
       {
-        url: 'https://yourwebsite.com/og-image-cars.jpg',
+        url: 'https://go-it-car-rental-5ia63ez2b-henrys-projects-5eef7959.vercel.app/openGraph.webp',
         width: 1200,
         height: 630,
-        alt: 'Car rental catalog preview',
+        alt: 'Find your perfect rental car',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Car Rental Catalog – Find Your Perfect Ride',
+    title: 'Find Your Perfect Rental Car – Reliable & Affordable Rentals',
     description:
-      'Explore a wide range of cars for rent. Filter by brand, price, and mileage, and load more options easily.',
-    images: ['https://yourwebsite.com/og-image-cars.jpg'],
+      'Reliable and budget-friendly rental cars for any journey. Browse our catalog and book your ideal car today.',
+    images: [
+      'https://go-it-car-rental-5ia63ez2b-henrys-projects-5eef7959.vercel.app/openGraph.webp',
+    ],
   },
 };
