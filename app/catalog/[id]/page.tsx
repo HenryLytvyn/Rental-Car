@@ -7,6 +7,7 @@ import formatThousands from '@/utils/formatThousands';
 import CarBookingForm from '@/components/CarBookingForm/CarBookingForm';
 import { Metadata } from 'next';
 import { CarType } from '@/types/apiResponse/apiResponse';
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -145,7 +146,7 @@ export default async function CarInfo({ params }: Props) {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }): Promise<Metadata> {
   const { id } = await params;
   const car: CarType = await getCarById(id);
