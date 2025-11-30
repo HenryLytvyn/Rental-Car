@@ -21,17 +21,15 @@ const manrope = Manrope({
 
 interface Props {
   children: React.ReactNode;
-  modal?: React.ReactNode;
 }
 
-export default function RootLayout({ children, modal }: Props) {
+export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${manrope.variable}`}>
         <TanStackProvider>
           <Header />
           <main>{children}</main>
-          <div style={{ position: 'fixed', top: 0, left: 0 }}>{modal}</div>
         </TanStackProvider>
       </body>
     </html>
