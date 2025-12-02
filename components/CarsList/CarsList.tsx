@@ -1,5 +1,3 @@
-'use client';
-
 import { CarType } from '@/types/apiResponse/apiResponse';
 import CarCard from '../CarCard/CarCard';
 import css from './CarsList.module.css';

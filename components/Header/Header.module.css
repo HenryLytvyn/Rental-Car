@@ -1,5 +1,6 @@
 .header {
   background-color: var(--color-bg-secondary);
+  min-width: 1440px;
 }
 
 .headerContainer {
