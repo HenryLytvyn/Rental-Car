@@ -37,15 +37,15 @@ export default function CatalogClient({ brands }: Props) {
     enabled: carsList.length === 0,
   });
 
-  // useEffect(() => {
-  //   if (data?.cars) {
-  //     rewriteCarsList(data.cars);
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (data?.cars) {
+      rewriteCarsList(data.cars);
+    }
+  }, [data]);
 
-  // useEffect(() => {
-  //   if (queryStore !== catalogInitialQuery) setQuery(queryStore);
-  // }, []);
+  useEffect(() => {
+    if (queryStore !== catalogInitialQuery) setQuery(queryStore);
+  }, []);
 
   useLockScroll(isFetching);
 
@@ -72,10 +72,10 @@ export default function CatalogClient({ brands }: Props) {
 
     addCarsToList(res.cars);
 
-    queryClient.setQueryData(['cars'], {
-      ...res,
-      cars: [...carsList, ...res.cars],
-    });
+    // queryClient.setQueryData(['cars'], {
+    //   ...res,
+    //   cars: [...carsList, ...res.cars],
+    // });
 
     setIsLoadingMore(false);
   }
