@@ -140,7 +140,7 @@ export default function CatalogClient({ brands }: Props) {
         <ButtonPrimary handleClick={handleSearch} width={156} text="Search" />
       </div>
 
-      {/* <CarsList cars={carsList} /> */}
+      <CarsList cars={carsList} />
 
       {isLoadingMore ||
         (data && data?.totalPages > Number(data?.page) && (
