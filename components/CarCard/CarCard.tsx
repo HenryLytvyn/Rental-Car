@@ -18,7 +18,7 @@ export default function CarCard({ car }: Props) {
   }
 
   return (
-    <div className={css.card}>
+    <li className={css.card}>
       <div>
         <Image
           src={car.img}
@@ -77,6 +77,6 @@ export default function CarCard({ car }: Props) {
           />
         </button>
       )}
-    </div>
+    </li>
   );
 }
