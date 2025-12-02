@@ -20,7 +20,7 @@ export default function CarCard({ car }: Props) {
   }
 
   return (
-    <li key={car.id} className={css.card}>
+    <li className={css.card}>
       <div>
         <Image
           src={car.img}

@@ -1,3 +1,5 @@
+'use client';
+
 import { CarType } from '@/types/apiResponse/apiResponse';
 import CarCard from '../CarCard/CarCard';
 import css from './CarsList.module.css';
@@ -10,7 +12,7 @@ export default function CarsList({ cars }: Props) {
   return (
     <ul className={css.carsList}>
       {cars.map(car => (
-        <CarCard car={car} />
+        <CarCard key={car.id} car={car} />
       ))}
     </ul>
   );
