@@ -3,14 +3,14 @@ import CarCard from '../CarCard/CarCard';
 import css from './CarsList.module.css';
 
 interface Props {
-  items: CarType[];
+  cars: CarType[];
 }
 
-export default function CarsList({ items }: Props) {
+export default function CarsList({ cars }: Props) {
   return (
     <ul className={css.carsList}>
-      {items.map(item => (
-        <CarCard key={item.id} car={item} />
+      {cars.map(car => (
+        <CarCard car={car} />
       ))}
     </ul>
   );

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import css from './CarCard.module.css';
 import LinkPrimary from '../LinkPrimary/LinkPrimary';
@@ -18,7 +20,7 @@ export default function CarCard({ car }: Props) {
   }
 
   return (
-    <li className={css.card}>
+    <li key={car.id} className={css.card}>
       <div>
         <Image
           src={car.img}
