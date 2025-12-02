@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { CarType } from '@/types/apiResponse/apiResponse';
 import { getCarByIdCached } from '@/lib/api/carCache';
 import CarInfo from './CarInfo';
-export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ id: string }>;
