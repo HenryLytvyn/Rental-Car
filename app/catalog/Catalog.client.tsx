@@ -72,10 +72,10 @@ export default function CatalogClient({ brands }: Props) {
 
     addCarsToList(res.cars);
 
-    // queryClient.setQueryData(['cars'], {
-    //   ...res,
-    //   cars: [...carsList, ...res.cars],
-    // });
+    queryClient.setQueryData(['cars'], {
+      ...res,
+      cars: [...carsList, ...res.cars],
+    });
 
     setIsLoadingMore(false);
   }

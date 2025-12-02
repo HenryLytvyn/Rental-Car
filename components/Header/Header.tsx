@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className={css.header}>
       <div className={`container ${css.headerContainer}`}>
-        <Link className={css.logoLink} href="/">
+        <Link prefetch={false} className={css.logoLink} href="/">
           <img className={css.logoImg} src="/logo.svg" alt="company logo" />
         </Link>
 
@@ -19,6 +19,7 @@ export default function Header() {
           <ul className={css.navList}>
             <li className={css.navItem}>
               <Link
+                prefetch={false}
                 className={`${css.navItemLink} ${isHomePage ? css.accentColor : ''}`}
                 href="/"
               >
@@ -27,6 +28,7 @@ export default function Header() {
             </li>
             <li className={css.navItem}>
               <Link
+                prefetch={false}
                 className={`${css.navItemLink} ${isCatalogPage ? css.accentColor : ''}`}
                 href="/catalog"
               >

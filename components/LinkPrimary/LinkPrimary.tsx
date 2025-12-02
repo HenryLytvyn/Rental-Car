@@ -9,7 +9,12 @@ interface Props {
 
 export default function LinkPrimary({ width, text, page }: Props) {
   return (
-    <Link className={css.link} href={page} style={{ width: width }}>
+    <Link
+      prefetch={false}
+      className={css.link}
+      href={page}
+      style={{ width: width }}
+    >
       {text}
     </Link>
   );

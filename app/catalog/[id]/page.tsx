@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { CarType } from '@/types/apiResponse/apiResponse';
-import { getCarByIdCached } from '@/lib/api/carCache';
 import CarInfo from './CarInfo';
+import { getCarById } from '@/lib/api/api';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -9,7 +9,7 @@ interface Props {
 
 export default async function CarInfoPage({ params }: Props) {
   const { id } = await params;
-  const car: CarType = await getCarByIdCached(id);
+  const car: CarType = await getCarById(id);
 
   return <CarInfo car={car} />;
 }
@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const { id } = await params;
-  const car: CarType = await getCarByIdCached(id);
+  const car: CarType = await getCarById(id);
   const carFullName = `${car.brand} ${car.model} (${car.year})`;
 
   return {

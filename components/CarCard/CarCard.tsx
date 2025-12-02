@@ -2,21 +2,14 @@ import Image from 'next/image';
 import css from './CarCard.module.css';
 import LinkPrimary from '../LinkPrimary/LinkPrimary';
 import getAddress from '@/utils/getAddress';
-import { Icon } from '../Icon/Icon';
-import useFavouriteList from '@/lib/store/favouriteStore';
 import { CarType } from '@/types/apiResponse/apiResponse';
+import CarCardClient from './CarCard.client';
 
 interface Props {
   car: CarType;
 }
 
 export default function CarCard({ car }: Props) {
-  const { favouriteList, setFavourite } = useFavouriteList();
-
-  function isFavourite() {
-    return favouriteList.includes(car.id);
-  }
-
   return (
     <li className={css.card}>
       <div>
@@ -52,31 +45,7 @@ export default function CarCard({ car }: Props) {
       </div>
       <LinkPrimary width={276} text="Read more" page={`/catalog/${car.id}`} />
 
-      {isFavourite() && (
-        <button
-          className={css.favouriteBtn}
-          type="button"
-          onClick={() => setFavourite(car.id)}
-        >
-          <Icon
-            name="icon-favourite-active"
-            className={`${css.favouriteIcon} ${css.favouriteIconActive}`}
-          />
-        </button>
-      )}
-
-      {!isFavourite() && (
-        <button
-          className={css.favouriteBtn}
-          type="button"
-          onClick={() => setFavourite(car.id)}
-        >
-          <Icon
-            name="icon-favourite-default"
-            className={`${css.favouriteIcon} ${css.favouriteIconNotActive}`}
-          />
-        </button>
-      )}
+      <CarCardClient id={car.id} />
     </li>
   );
 }
